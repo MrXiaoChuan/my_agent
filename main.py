@@ -1,6 +1,7 @@
 from config import get_logger, settings
 from agents.base_agent import create_base_agent
 from core.models import get_streaming_model
+from core.tools.filesystem import FILESYSTEM_TOOLS
 
 logger = get_logger(__name__)
 
@@ -8,13 +9,13 @@ def main():
     logger.info("正在初始化 Base Agent...")
     try:
         # 获取 ChatModel 实例
-        llm = get_streaming_model()
+        llm = get_streaming_model("deepseek-chat")
         
         # 创建默认的 Base Agent，并传入模型实例
-        agent = create_base_agent(model=llm, tools=[])
+        agent = create_base_agent(model=llm, tools=FILESYSTEM_TOOLS)
         
         # 测试同步调用
-        test_query = "请问，今天是几号？现在几点几点？"
+        test_query = "明天是我的生日，要记住哦！请调用文件系统工具把这个信息保存下来，当前的 thread_id 是 'test_thread_1'。"
         logger.info(f"发送测试问题: {test_query}")
         
         response = agent.invoke(test_query)
