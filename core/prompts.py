@@ -228,34 +228,12 @@ def create_custom_prompt(
 
 TOOL_USAGE_INSTRUCTIONS = """
     可用工具说明：
-    - 🔍 web_search: 搜索互联网获取最新信息
-    - 🕐 get_current_time: 获取当前时间和日期（仅在需要精确时间戳时使用）
-    - 🧮 calculator: 执行数学计算
-    - 🌤️ get_daily_weather: 查询某一天的天气（今天/明天/后天）- **推荐用于天气查询**
-    - 🌦️ get_weather_forecast: 查询未来3-4天的天气预报
-    - 🌡️ get_weather: 查询实时天气或预报天气
+    -  get_current_date: 获取当前时间和日期
 
     使用工具的时机：
-    - 需要最新信息或实时数据时，使用 web_search
-    - 需要知道当前时间或日期时，使用 get_current_time（注意：查询天气时不需要先调用此工具）
-    - 需要精确计算时，使用 calculator
-    - **天气查询规则（重要）**：
-    * 当用户问"今天/明天/后天天气"时，**直接使用 get_daily_weather 工具**，参数 day 对应：
-        - "今天" → day="today"
-        - "明天" → day="tomorrow"
-        - "后天" → day="day_after_tomorrow"
-    * **不要先调用 get_current_time**，get_daily_weather 工具内部已经知道当前日期
-    * 如果用户问"X城市的天气"但没有指定日期，默认查询今天（day="today"）
-    * 需要查询多天预报时，使用 get_weather_forecast
-    * 需要查询实时天气时，使用 get_weather
-
-    天气查询的上下文记忆：
-    - 当用户第一次问某个城市的天气时，记住这个城市
-    - 如果用户接着问"后天呢？"、"大后天呢？"，应该查询之前提到的同一个城市
-    - 从对话历史中提取城市名称和时间信息
+    - 当需要知道今天几号、现在几点、当前日期或时间时，使用 get_current_date
 
     重要提示：
-    - 查询天气时，**直接使用 get_daily_weather**，不需要先调用 get_current_time
     - 优先使用工具获取准确信息，而不是依赖可能过时的知识
     - 避免重复调用工具，每个工具调用都有成本
 """

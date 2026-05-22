@@ -6,10 +6,12 @@
 所有工具都遵循 LangChain 的工具接口规范
 """
 
+from .time_tools import get_current_date
+
 # ==================== 工具集合 ====================
 
 # 基础工具集（不需要 API Key）
-BASIC_TOOLS = []
+BASIC_TOOLS = [get_current_date]
 
 # 需要外部 API 的工具做细分，便于在不同场景组合
 WEB_SEARCH_TOOLS = []
@@ -24,6 +26,7 @@ ALL_TOOLS = BASIC_TOOLS + ADVANCED_TOOLS
 
 __all__ = [
     # 单个工具
+    "get_current_date",
     # 工具分组
     # 工具集合
     "BASIC_TOOLS",

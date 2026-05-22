@@ -11,10 +11,10 @@ def main():
         llm = get_streaming_model()
         
         # 创建默认的 Base Agent，并传入模型实例
-        agent = create_base_agent(model=llm)
+        agent = create_base_agent(model=llm, tools=[])
         
         # 测试同步调用
-        test_query = "你好，请用一句话介绍一下你自己。"
+        test_query = "请问，今天是几号？现在几点几点？"
         logger.info(f"发送测试问题: {test_query}")
         
         response = agent.invoke(test_query)
